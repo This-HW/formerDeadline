@@ -1,59 +1,45 @@
 import React, {Component} from 'react';
-import { StyleSheet,FlatList, Text, View} from 'react-native';
-//import DeadlineItem from './DeadineItem';
+import { StyleSheet, FlatList, Text, View} from 'react-native';
+import DeadlineItem from './DeadlineItem';
 
-export default class DeadlineList extends Component {
-  constructor(props){
-    super(props)
-    this.state ={
-      deadlineList: [],
+export default class Deadlines extends Component {
 
-    }
+  state = {
+    deadlines: [
+      {title : '-첫번째 리스트', endDay: "2018-10-18", memo:"세부사항", alarmCount:1, id:1 },
+      {title : '-두번째 리스트', endDay: "2018-11-18", memo:"세부사항", alarmCount:1, id:2 },
+      {title : '-세번째 리스트', endDay: "2018-09-30", memo:"세부사항", alarmCount:1, id:3 },
+      {title : '-네번째 리스트', endDay: "2018-09-18", memo:"세부사항", alarmCount:1, id:4 },
+      {title : '-다섯번째 리스트', endDay: "2018-09-1", memo:"세부사항", alarmCount:1, id:5 },
+      {title : '-1', endDay: "2018-09-18", memo:"세부사항", alarmCount:1, id:6 },
+      {title : '-2번제목', endDay: "2020-09-18", memo:"세부사항", alarmCount:1, id:7 },
+      {title : '-3번제목', endDay: "2019-09-18", memo:"세부사항", alarmCount:1, id:8 },
+      {title : '-2번제목', endDay: "2018-09-25", memo:"세부사항", alarmCount:1, id:9 },
+      {title : '-3번제목', endDay: "2018-09-08", memo:"세부사항", alarmCount:1, id:10 },
+      {title : '-2번제목', endDay: "2018-09-19", memo:"세부사항", alarmCount:1, id:11 },
+      {title : '-4번제목', endDay: "2018-09-21", memo:"세부사항", alarmCount:1, id:12 },
+      {title : '-3번제목', endDay: "2018-09-20", memo:"세부사항", alarmCount:1, id:13 },
 
-    this.select = this.select.bind(this);
+    ]
   }
 
-  _renderRow = ({item}) => {
-    return <View style={{height: 80 , borderWidth:1}}><Text>{item.title}</Text></View>;
-  }
 
-  _keyExtractor = (item,index) => item.index;
+  render(){
 
-  select(){
-    this.setState({
-      text:"123"
-    })
-  }
+    return(
+      <View style={{flex: 1}}>
 
-  componentDidMount(){
-    this.setState({
-      data: [
-        {title : '첫번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-        {title : '두번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-        {title : '세번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-        // {title : '네번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-        // {title : '자섯번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-        // {title : '여섯번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
-      ]
-    })
-  }
-
-  render() {
-
-    return (
-      
-     
-     <View className="deadline-list-template" style={[ styles.container]}>
-
-        <View style={[ styles.deadline_list_wrapper]}>
-          <Text>데드라인 리스트</Text>
-          <FlatList 
-          style={{flex: 1, backgroundColor: "lightblue"}}
-          keyExtractor={this._keyExtractor}
-          data = {this.state.data}
-          renderItem = {this._renderRow}
-          />
-        </View>
+        <FlatList 
+        style={{flex: 1}}
+        data = {this.state.deadlines}
+        keyExtractor={ item => item.id}
+        renderItem = {({item}) => <DeadlineItem 
+          title={item.title} 
+          endDay={item.endDay}
+          memo={item.memo}
+          id={item.id} 
+          />}
+        />        
 
       </View>
 
@@ -66,17 +52,5 @@ const styles = StyleSheet.create ({
     flex: 1
   },
 
-  deadline_list_wrapper : {
-    flex: 0.85,
-    justifyContent : 'center',
-    alignItems : 'center',
-    backgroundColor: "yellow",
-    alignItems: "stretch",
-
-
-    borderStyle: "solid",
-    borderWidth: 1.3,
-    borderColor: "black",
-  }
 
 });

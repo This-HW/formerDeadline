@@ -2,9 +2,9 @@
 
 import {AppRegistry} from 'react-native';
 import App from './App';
-import DeadlineList from './src/screens/DeadlineList';
+import Deadlines from './src/screens/Deadlines';
 import {name as appName} from './app.json';
 
 //AppRegistry.registerComponent(appName, () => App);
 
-AppRegistry.registerComponent(appName, () => DeadlineList);
+AppRegistry.registerComponent(appName, () => Deadlines);
