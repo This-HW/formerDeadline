@@ -37,8 +37,8 @@ export default class DeadlineItem extends Component {
       this.fontcolor="#ffffff";
     }
     else if (leftDay<=14){
-      this.flagcolor="#ff726c";
-      this.bordercolor="#ff726c";
+      this.flagcolor="#ffaaa7";
+      this.bordercolor="#ffaaa7";
       this.fontcolor="#ffffff";
     }
     else {
@@ -55,7 +55,7 @@ export default class DeadlineItem extends Component {
     this.setBoxColor();
 
     return (
-      <View style={[styles.deadlineBox, { backgroundColor: this.flagcolor, borderColor: this.bordercolor}]}>
+      <View style={[styles.deadlineBox, { backgroundColor: this.flagcolor}]}>
         <View style={{flexDirection:'row', alignContent:'center', justifyContent:'space-between'}}>
           <View>
             <Text style={[styles.titleBox, { color:this.fontcolor }]}>{title}</Text>
@@ -80,7 +80,10 @@ export default class DeadlineItem extends Component {
 const styles = StyleSheet.create({
   deadlineBox: {
     height:80,
-    borderWidth: 0.5,
+    borderBottomWidth: 0.7,
+    padding:5,
+    paddingLeft:12,
+    paddingRight:12,
     backgroundColor: "#ffffff",
     borderColor: "#ededed",
     alignContent: 'center',
