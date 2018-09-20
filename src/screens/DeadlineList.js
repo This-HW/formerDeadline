@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet,FlatList, Text, View, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet,FlatList, Text, View} from 'react-native';
+//import DeadlineItem from './DeadineItem';
 
-
-export default class C4_List extends Component {
+export default class DeadlineList extends Component {
   constructor(props){
     super(props)
     this.state ={
-      text: "",
-      data: []
+      deadlineList: [],
+
     }
 
     this.select = this.select.bind(this);
   }
 
   _renderRow = ({item}) => {
-    return <View style={{height: 150 , borderWidth:1}}><Text>{item.title}</Text></View>;
+    return <View style={{height: 80 , borderWidth:1}}><Text>{item.title}</Text></View>;
   }
 
-  _keyExtractor = (item,index) => item.id;
+  _keyExtractor = (item,index) => item.index;
 
   select(){
     this.setState({
@@ -28,12 +28,12 @@ export default class C4_List extends Component {
   componentDidMount(){
     this.setState({
       data: [
-        {title : '첫번째 리스트', id: "0"},
-        {title : '두번째 리스트', id: "1"},
-        {title : '세번째 리스트', id: "2"},
-        {title : '네번째 리스트', id: "3"},
-        {title : '자섯번째 리스트', id: "4"},
-        {title : '여섯번째 리스트', id: "5"}
+        {title : '첫번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
+        {title : '두번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
+        {title : '세번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
+        // {title : '네번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
+        // {title : '자섯번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
+        // {title : '여섯번째 리스트', endDate: "2018-09-18", memo:"세부사항", a_date:1 },
       ]
     })
   }
@@ -43,17 +43,17 @@ export default class C4_List extends Component {
     return (
       
      
-     <View className="deadline-list-template" style={[C4_List_styles.container]}>
-        <View style={[C4_List_styles.date_time_wrapper]}>
+     <View className="deadline-list-template" style={[ styles.container]}>
+        <View style={[ styles.date_time_wrapper]}>
           <Text>날짜</Text>
         </View>
-        <View style={[C4_List_styles.alarm_wrapper]}>
+        <View style={[ styles.alarm_wrapper]}>
           <Text>알람</Text>
         </View>
-        <View style={[C4_List_styles.deadline_list_wrapper]}>
+        <View style={[ styles.deadline_list_wrapper]}>
           <Text>데드라인 리스트</Text>
           <FlatList 
-          style={{flex: 1, backgroundColor: "red"}}
+          style={{flex: 1, backgroundColor: "lightblue"}}
           keyExtractor={this._keyExtractor}
           data = {this.state.data}
           renderItem = {this._renderRow}
@@ -66,7 +66,7 @@ export default class C4_List extends Component {
   }
 }
 
-const C4_List_styles = StyleSheet.create ({
+const styles = StyleSheet.create ({
   container: {
     flex: 1
   },
